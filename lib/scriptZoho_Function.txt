@@ -1,0 +1,61 @@
+//-----------------get_vendors----------------//
+// Mengambil semua data Activities
+vendorsData = zoho.crm.getRecords("Vendors");
+// Menginisialisasi array kosong untuk menyimpan data yang diambil
+extractedData = {};
+// Melakukan iterasi pada setiap record Activities
+for each  vendor in vendorsData
+{
+	// Mengambil data yang dibutuhkan (name, tanggal, pemilik tugas, status)
+	owner = vendor.get("Owner");
+	name = owner.get("name");
+	vendor_name = vendor.get("Vendor_Name");
+	website = vendor.get("Website");
+	phone = vendor.get("Phone");
+	email = vendor.get("Email");
+	// Membuat objek dengan data yang diambil dan menambahkannya ke array
+	data = {"name":name,"vendor_name":vendor_name,"website":website,"phone":phone,"email":email};
+	extractedData.add(data);
+}
+outputJSON = {extractedData};
+// Mengembalikan data yang telah diekstraksi
+return outputJSON;
+
+
+//-----------------get_leads----------------//
+leadsData = zoho.crm.getRecords("Leads");
+extractedData = {};
+for each  lead in leadsData
+{
+	first_name = lead.get("First_Name");
+	last_name = lead.get("Last_Name");
+	email = lead.get("Email");
+	id = lead.get("id");
+	data = {"first_name":first_name,"last_name":last_name,"email":email,"id":id};
+	extractedData.add(data);
+}
+outputJSON = {extractedData};
+return outputJSON;
+
+//-----------------get_leads----------------//
+// Mengambil semua data Activities
+activitiesData = zoho.crm.getRecords("Activities");
+// Menginisialisasi array kosong untuk menyimpan data yang diambil
+extractedData = {};
+// Melakukan iterasi pada setiap record Activities
+for each  activity in activitiesData
+{
+	// Mengambil data yang dibutuhkan (name, tanggal, pemilik tugas, status)
+	owner = activity.get("Owner");
+	name = owner.get("name");
+	tanggal = activity.get("Due_Date");
+	priority = activity.get("Priority");
+	status = activity.get("Status");
+	tugas = activity.get("Subject");
+	// Membuat objek dengan data yang diambil dan menambahkannya ke array
+	data = {"name":name,"tenggat":tanggal,"prioritas":priority,"tugas":tugas,"status":status};
+	extractedData.add(data);
+}
+outputJSON = {extractedData};
+// Mengembalikan data yang telah diekstraksi
+return outputJSON;
